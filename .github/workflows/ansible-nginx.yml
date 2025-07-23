@@ -2,7 +2,10 @@ name: Deploy with Ansible
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
   ansible-deploy:
@@ -29,7 +32,7 @@ jobs:
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i /home/shruti/inventory ./ansible/site.yaml
+          ansible-playbook -i /home/shruti/inventory  ./ansible/site.yaml
         # Optional: Add your private SSH key as a GitHub secret and use it like this:
         # env:
         #   ANSIBLE_HOST_KEY_CHECKING: False
