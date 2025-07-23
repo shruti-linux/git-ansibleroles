@@ -20,8 +20,7 @@ jobs:
 
 
       - name: Install Ansible Galaxy roles
-        run: ansible-galaxy install -r /home/shruti/actions-runner/_work/git-ansibleroles/git-ansibleroles/requirements.yml
-
+        run: ansible-galaxy install -r  ./ansible/requiremnts.yaml
       - name: Run Ansible playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
