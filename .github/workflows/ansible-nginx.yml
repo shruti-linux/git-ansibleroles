@@ -20,7 +20,7 @@ jobs:
 
 
       - name: Install Ansible Galaxy roles
-        run: ansible-galaxy install -r requirements.yml
+        run: ansible-galaxy install -r /home/shruti/actions-runner/_work/git-ansibleroles/git-ansibleroles/requirements.yml
 
       - name: Run Ansible playbook
         env:
