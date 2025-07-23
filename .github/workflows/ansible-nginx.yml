@@ -18,9 +18,10 @@ jobs:
   
 
 
-
-      - name: Install Ansible Galaxy roles
-        run: ansible-galaxy install -r  ./ansible/requirements.yaml --ignore-errors
+      - name: Install Ansible Role
+        run: |
+          ansible-galaxy install -p ./roles geerlingguy.apache
+      
       - name: Run Ansible playbook
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
