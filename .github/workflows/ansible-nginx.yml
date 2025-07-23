@@ -9,7 +9,7 @@ on:
 
 jobs:
   ansible-deploy:
-    runs-on: master
+    runs-on: ansiblerole
 
     steps:
       - name: Checkout code
