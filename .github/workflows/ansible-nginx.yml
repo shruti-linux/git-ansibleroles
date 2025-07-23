@@ -1,0 +1,41 @@
+name: Deploy with Ansible
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  ansible-deploy:
+    runs-on: master
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible
+
+      - name: Install Ansible Galaxy roles
+        run: ansible-galaxy install -r requirements.yml
+
+      - name: Run Ansible playbook
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: |
+          ansible-playbook -i /home/shruti/inventory site.yaml
+        # Optional: Add your private SSH key as a GitHub secret and use it like this:
+        # env:
+        #   ANSIBLE_HOST_KEY_CHECKING: False
+        #   ANSIBLE_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        # run: |
+        #   echo "$ANSIBLE_PRIVATE_KEY" > ~/.ssh/id_rsa
+        #   chmod 600 ~/.ssh/id_rsa
+        #   ansible-playbook -i inventory.ini site.yml
+
