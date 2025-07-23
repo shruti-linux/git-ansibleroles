@@ -1,0 +1,3 @@
+# requirements.yml
+- src: geerlingguy.nginx
+  version: ">=3.0.0"
