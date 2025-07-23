@@ -1,0 +1,33 @@
+- name: Minimal NGINX setup on CentOS 9
+  hosts: node1
+  become: yes
+
+  tasks:
+    - name: Install NGINX
+      dnf:
+        name: nginx
+        state: present
+      tags:
+        - nginx
+        - install
+
+    - name: Start and enable NGINX
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      tags:
+        - nginx
+        - service
+
+   
+
+  handlers:
+    - name: Reload NGINX
+      service:
+        name: nginx
+        state: reloaded
+      tags:
+        - nginx
+        - reload
+
